@@ -49,12 +49,15 @@ Nexora — это бесплатный мессенджер, созданный 
 
 | Платформа | Ссылка | Статус |
 |-----------|--------|--------|
-| 🪟 **Windows** | [Nexora-Windows.exe](https://github.com/NexoraQ/Nexora/releases/latest) | ✅ Готово |
+| 🪟 **Windows** | [Nexora-Windows.exe](https://raw.githubusercontent.com/NexoraQ/Nexora/main/Nexora-Windows.exe) | ✅ Готово |
 | 🌐 **Web** | [Открыть в браузере](https://nexora.onrender.com) | ✅ Готово |
 | 🤖 **Android (APK)** | см. раздел [Releases](https://github.com/NexoraQ/Nexora/releases) | ✅ Сборка в CI |
 | 🍎 **iOS (IPA)** | требует Mac — собирается отдельно | ⏳ Скоро |
 
-👉 **EXE и APK скачивайте в разделе [Releases](https://github.com/NexoraQ/Nexora/releases)**.
+👉 **Windows EXE:** скачивайте прямо из репозитория —
+[`Nexora-Windows.exe`](https://raw.githubusercontent.com/NexoraQ/Nexora/main/Nexora-Windows.exe)
+(файл лежит в корне репозитория). Красивый раздел **Releases** с историей версий можно
+опубликовать в один клик в веб-интерфейсе GitHub (см. ниже).
 
 ---
 
