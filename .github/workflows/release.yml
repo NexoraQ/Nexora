@@ -1,0 +1,69 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Java (для Android SDK)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.5'
+          channel: 'stable'
+      - run: flutter config --no-analytics
+
+      - name: Сгенерировать нативный каркас Android
+        run: |
+          flutter create --project-name nexora --org com.nexora _scaffold
+          cp -r _scaffold/android android
+          rm -rf _scaffold
+
+      - name: Наложить брендинг (иконки, манифест)
+        run: cp -r android-overrides/. android/
+
+      - name: Зависимости и сборка APK
+        run: |
+          flutter pub get
+          flutter build apk --release
+
+      - name: Подготовить артефакты
+        run: |
+          mkdir -p artifacts
+          cp build/app/outputs/flutter-apk/app-release.apk artifacts/Nexora-android.apk
+          cp Nexora-Windows.exe artifacts/Nexora-Windows.exe
+
+      - name: Создать GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/*
+          name: Nexora ${{ github.ref_name }}
+          body: |
+            ## Nexora ${{ github.ref_name }} — Объединяя людей без границ
+
+            Полноценные приложения (не архивы):
+
+            - 🪟 **Windows**: `Nexora-Windows.exe`
+            - 🤖 **Android**: `Nexora-android.apk`
+
+            Установи APK на Android (разреши установку из неизвестных источников) и запускай Nexora.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
