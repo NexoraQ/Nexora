@@ -24,6 +24,9 @@ jobs:
       - name: Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Установить пакеты Android SDK
+        run: sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+
       - name: Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -43,7 +46,7 @@ jobs:
       - name: Зависимости и сборка APK
         run: |
           flutter pub get
-          flutter build apk --release
+          flutter build apk --release --verbose
 
       - name: Подготовить артефакты
         run: |
