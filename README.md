@@ -29,11 +29,21 @@
 | Платформа | Ссылка | Статус |
 |-----------|--------|--------|
 | 🪟 Windows | `Nexora-Windows.exe` (в релизах) | ✅ Готово |
-| 🤖 Android (APK) | раздел **Releases** | ⏳ Сборка в CI |
-| 🍎 iOS (IPA) | требует Mac (см. позже) | 🔜 Скоро |
+| 🤖 Android (APK) | исходник Flutter в репозитории | 🛠 Готов / сборка в CI |
+| 🍎 iOS (IPA) | исходник Flutter в репозитории | 🛠 Сборка на Mac (`flutter create .`) |
 | 🌐 Web | открывается в браузере | ✅ Готово |
 
 👉 **Готовые сборки ищи в разделе [Releases](../../releases).**
+
+### 📱 Мобильные клиенты (Flutter)
+Исходный код мобильного приложения (**Android + iOS**) уже в репозитории — папка `nexora-mobile/`
+(Flutter, `web_socket_channel`, `http`). Это полноценный чат-клиент: логин, список чатов,
+экран переписки и WebSocket-соединение с бэкендом Nexora.
+
+- **Android**: собирается в APK/AAB (`flutter build apk`).
+- **iOS**: требует Mac с Xcode. В папке пока нет сгенерированного `ios/` —
+  на MacBook выполни `flutter create .`, затем `flutter build ios`.
+- Бэкенд-URL задаётся в `nexora-mobile/lib/config.dart`.
 
 ---
 
@@ -122,7 +132,7 @@
 - [ ] 💎 Nexora Premium-подписки
 - [ ] 📞 Звонки WebRTC (аудио/видео)
 - [ ] 🖥 Десктоп-клиент (Windows / macOS / Linux)
-- [ ] 📱 Мобильные приложения (Android APK / iOS)
+- [x] 📱 Мобильные клиенты (исходник Flutter: Android / iOS)
 - [ ] 🔐 Вход по номеру телефона
 
 ---
